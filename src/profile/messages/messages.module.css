@@ -1,0 +1,16 @@
+.chat {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogs {
+    padding: 10px;
+}
+
+.dialogs a {
+    text-decoration: none;
+}
+
+.message {
+    padding: 10px;
+}

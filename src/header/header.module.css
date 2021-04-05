@@ -1,0 +1,9 @@
+.header {
+    background-color: mediumseagreen;
+    grid-area: h;
+}
+
+.login {
+    float: right;
+    padding: 10px;
+}

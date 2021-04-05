@@ -1,0 +1,12 @@
+.App {
+  display: grid;
+  grid-template-areas:
+  "h h"
+  "s c";
+  grid-template-rows: 90px 1fr;
+  grid-template-columns: 2fr 10fr;
+}
+
+.AppContent {
+  grid-area: c;
+}

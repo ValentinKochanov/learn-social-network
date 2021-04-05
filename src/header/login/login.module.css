@@ -1,0 +1,7 @@
+.form {
+    padding: 10px;
+}
+
+.formSummaryError {
+    border: red 1px solid;
+  }

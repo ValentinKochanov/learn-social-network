@@ -1,0 +1,13 @@
+.sidebar {
+    background-color: indigo;
+    grid-area: s;
+    padding: 20px;
+    height: 400px;
+}
+.sidebar a {
+    color: coral;
+    text-decoration: none;
+}
+.sidebar a.active {
+    color: gold;
+}
