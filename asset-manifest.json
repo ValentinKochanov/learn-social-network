@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/learn-social-network/static/css/main.2e705213.chunk.css",
+    "main.js": "/learn-social-network/static/js/main.7cae6762.chunk.js",
+    "main.js.map": "/learn-social-network/static/js/main.7cae6762.chunk.js.map",
+    "runtime-main.js": "/learn-social-network/static/js/runtime-main.03c4548e.js",
+    "runtime-main.js.map": "/learn-social-network/static/js/runtime-main.03c4548e.js.map",
+    "static/js/2.1a21fd53.chunk.js": "/learn-social-network/static/js/2.1a21fd53.chunk.js",
+    "static/js/2.1a21fd53.chunk.js.map": "/learn-social-network/static/js/2.1a21fd53.chunk.js.map",
+    "index.html": "/learn-social-network/index.html",
+    "static/css/main.2e705213.chunk.css.map": "/learn-social-network/static/css/main.2e705213.chunk.css.map",
+    "static/js/2.1a21fd53.chunk.js.LICENSE.txt": "/learn-social-network/static/js/2.1a21fd53.chunk.js.LICENSE.txt",
+    "static/media/usersPhoto.1d6a4084.png": "/learn-social-network/static/media/usersPhoto.1d6a4084.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.03c4548e.js",
+    "static/js/2.1a21fd53.chunk.js",
+    "static/css/main.2e705213.chunk.css",
+    "static/js/main.7cae6762.chunk.js"
+  ]
+}
