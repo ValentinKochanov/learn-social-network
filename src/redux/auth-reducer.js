@@ -8,7 +8,7 @@ let initialState = {
 	login: null,
 	email: null,
 	isAuth: false
-}
+};
 
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -19,8 +19,8 @@ const authReducer = (state = initialState, action) => {
 			};
 		default:
 			return state;
-	}
-}
+	};
+};
 
 export let setAuthUsersData = (email, id, login, isAuth) => ({
 	 type: SET_USERS_DATA, data: { email, id, login, isAuth } });
@@ -29,9 +29,9 @@ export const LogoutThC = () => (dispatch) => {
 	Logout().then(data => {
 		if (data.resultCode === 0) {
 			dispatch(setAuthUsersData(null, null, null, false));
-		}
-	})
-}
+		};
+	});
+};
 
 export const LoginThC = (email, password, rememberMe) => (dispatch) => {
 	Login(email, password, rememberMe).then(data => {
@@ -39,17 +39,17 @@ export const LoginThC = (email, password, rememberMe) => (dispatch) => {
 			dispatch(authMeThunkCreator());		
 		} else {
 			dispatch(stopSubmit('login', {_error: data.messages[0]}))
-		}
-	})
-}
+		};
+	});
+};
 
 export const authMeThunkCreator = () => (dispatch) => {
 	authMe().then(data => {
 		if (data.resultCode === 0) {
 			let { email, id, login } = data.data;
 			dispatch(setAuthUsersData(email, id, login, true));
-		}
-	})
-}
+		};
+	});
+};
 
 export default authReducer;

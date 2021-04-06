@@ -13,13 +13,14 @@ let initialState = {
 		{ id: 2, text: "rthjhgf", likeCount: 2 },
 	],
 	profile: null,
-	status: "---"
+	status: "---",
+	photo: null,
 }
 
 const contentReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_POST:
-			let contentId = state.content.length + 1
+			let contentId = state.content.length + 1;
 			return {
 				...state,
 				content: [ { id: contentId, text: action.text, likeCount: 0 }, ...state.content],
@@ -41,48 +42,48 @@ const contentReducer = (state = initialState, action) => {
 			};
 		default:
 			return state;
-	}
-}
+	};
+};
 
 export const addPost = (text) => (dispatch) => {
 	dispatch(addPostText(text));
 	dispatch(reset('newPosts'));
-}
+};
 
-const addPostText = (text) => ({ type: ADD_POST, text });
+export const addPostText = (text) => ({ type: ADD_POST, text });
 
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 
-export let setUsersProfile = (profile) => ({ type: SET_USERS_PROFILE, profile });
+export const setUsersProfile = (profile) => ({ type: SET_USERS_PROFILE, profile });
 
-const savePhotoSuccess = (photo) => ({ type: SET_PHOTO, photo})
+export const savePhotoSuccess = (photo) => ({ type: SET_PHOTO, photo});
 
 export const getUserProfileThC = (userId) => (dispatch) => {
 	userProfile(userId).then(data => {
 		dispatch(setUsersProfile(data))
-	})
-}
+	});
+};
 
 export const savePhoto = (photo) => (dispatch) => {
 	setPhoto(photo).then(data => {
 		if (data.resultCode === 0) {
 			dispatch(savePhotoSuccess(data.data.photo))
-		}
-	})
-}
+		};
+	});
+};
 
 export const getStatusThC = (userId) => (dispatch) => {
 	getStatus(userId).then(data => {
 		dispatch(setStatus(data))
-	})
-}
+	});
+};
 
 export const updateStatusThC = (status) => (dispatch) => {
 	updateStatus(status).then(response => {
 		if (response.data.resultCode === 0) {
 			dispatch(setStatus(status))
-		}
-	})
-}
+		};
+	});
+};
 
 export default contentReducer;

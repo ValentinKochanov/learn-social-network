@@ -14,7 +14,7 @@ let initialState = {
 		{ id: 3, text: "LOL" },
 		{ id: 4, text: "Good bye" },
 	],
-}
+};
 
 const dialogsReducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -26,16 +26,16 @@ const dialogsReducer = (state = initialState, action) => {
 			};
 		default:
 			return state;
-	}
-}
+	};
+};
 
 export const addMessage = (text) => (dispatch) => {
 	dispatch(addMessageText(text));
 	dispatch(reset('newMessage'));
-}
+};
 
-const addMessageText = (text) => {
+export const addMessageText = (text) => {
 	return { type: ADD_MESSAGE, text };
-}
+};
 
 export default dialogsReducer;
