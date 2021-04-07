@@ -21,7 +21,9 @@ class UsersContainer extends React.Component {
             users={this.props.users}
             followingInProgress={this.props.followingInProgress}
             unfollowThC={this.props.unfollowThC}
-            followThC={this.props.followThC}/>
+            followThC={this.props.followThC}
+            paginatorSize={this.props.paginatorSize}
+            />
         }
 }
 
@@ -32,6 +34,7 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
         followingInProgress: state.usersPage.followingInProgress,
+        paginatorSize: state.usersPage.paginatorSize
     }
 }
 

@@ -1,4 +1,5 @@
 import { getUsers, Unfollow, Follow } from './../api/api';
+import {reset} from 'redux-form';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW'; 
@@ -7,13 +8,15 @@ const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
 const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'; 
+const FIND_USERS = 'FIND_USERS';
 
 let initialState = {
     users: [ ],
-    pageSize: 20,
+    pageSize: 50,
     totalUserCount: null,
     currentPage: 1,
-    followingInProgress: []
+    followingInProgress: [],
+    paginatorSize: 20,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -57,38 +60,53 @@ const usersReducer = (state = initialState, action) => {
                     ? [...state.followingInProgress, action.userId]
                     : state.followingInProgress.filter(id => id !== action.userId)
             };
+        case FIND_USERS:
+            return {
+                ...state,
+                users: state.users.filter(u => u.name === action.userName)
+            }
         default:
             return state;
     };
 }
 
-export let follow = (userId) => {
+export const follow = (userId) => {
     return { type: FOLLOW, userId };
+};
+
+export const findUsers = (userName) => (dispatch) => {
+    dispatch(findUsersName(userName));
+    dispatch(reset('search'));
+  
+};
+
+export const findUsersName = (userName) => {
+    return { type: FIND_USERS, userName };
 }
 
-export let unfollow = (userId) => {
+export const unfollow = (userId) => {
     return {type: UNFOLLOW, userId };
-}
+};
 
-export let setUsers = (users) => {
+export const setUsers = (users) => {
     return {type: SET_USERS, users };
-}
+};
 
-export let setProfileStatus = (data) => {
+export const setProfileStatus = (data) => {
     return {type: SET_PROFILE_STATUS, data};
-}
+};
 
-export let setUsersTotalCount = (totalCount) => {
+export const setUsersTotalCount = (totalCount) => {
     return {type: SET_USERS_TOTAL_COUNT, totalCount };
-}
+};
 
-export let setCurrentPage = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
     return {type: SET_CURRENT_PAGE, currentPage };
-}
+};
 
-export let toggleFollowingProgress = (isFetching, userId) => {
+export const toggleFollowingProgress = (isFetching, userId) => {
     return {type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId}
-}
+};
 
 export const getUsersThC = (pageSize, currentPage) => (dispatch) => {
     getUsers(pageSize, currentPage)
@@ -96,8 +114,8 @@ export const getUsersThC = (pageSize, currentPage) => (dispatch) => {
             dispatch(setUsers(data.items));
             dispatch(setUsersTotalCount(data.totalCount));
             dispatch(setCurrentPage(currentPage));
-        })
-}
+        });
+};
 
 export const unfollowThC = (userId) => (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
@@ -106,8 +124,8 @@ export const unfollowThC = (userId) => (dispatch) => {
             dispatch(unfollow(userId))
         }
         dispatch(toggleFollowingProgress(false, userId));
-    })
-}
+    });
+};
 
 export const followThC = (userId) => (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
@@ -116,7 +134,7 @@ export const followThC = (userId) => (dispatch) => {
             dispatch(follow(userId))
         }
         dispatch(toggleFollowingProgress(false, userId));
-    })
-}
+    });
+};
 
 export default usersReducer;
